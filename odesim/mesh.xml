@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mesh name="my_mesh">
+   <node idx="1" k="0.15" m="0.002">
+      <static/>
+      <x>0 0 0</x>
+   </node>
+   <node idx="2" k="0.15" m="0.002">
+      <x>0.035 0 0</x>
+   </node>
+   <node idx="3" k="0.15" m="0.002">
+      <x>0.07 0 0</x>
+   </node>
+   <node idx="4" k="0.15" m="0.002">
+      <x>0.105 0 0</x>
+   </node>
+   <node idx="5" k="0.15" m="0.002">
+      <x>0.14 0 0</x>
+   </node>
+   <node idx="6" k="0.15" m="0.002">
+      <x>0.175 0 0</x>
+   </node>
+   <node idx="7" k="0.15" m="0.002">
+      <x>0.21 0 0</x>
+   </node>
+   <node idx="8" k="0.15" m="0.002">
+      <x>0.245 0 0</x>
+   </node>
+   <node idx="9" k="0.15" m="0.002">
+      <static/>
+      <x>0 0.02 0</x>
+   </node>
+   <node idx="10" k="0.15" m="0.002">
+      <x>0.035 0.02 0</x>
+   </node>
+   <node idx="11" k="0.15" m="0.002">
+      <x>0.07 0.02 0</x>
+   </node>
+   <node idx="12" k="0.15" m="0.002">
+      <x>0.105 0.02 0</x>
+   </node>
+   <node idx="13" k="0.15" m="0.002">
+      <x>0.14 0.02 0</x>
+   </node>
+   <node idx="14" k="0.15" m="0.002">
+      <x>0.175 0.02 0</x>
+   </node>
+   <node idx="15" k="0.15" m="0.002">
+      <x>0.21 0.02 0</x>
+   </node>
+   <node idx="16" k="0.15" m="0.002">
+      <x>0.245 0.02 0</x>
+   </node>
+   <node idx="17" k="0.15" m="0.002">
+      <static/>
+      <x>0 0 0.04</x>
+   </node>
+   <node idx="18" k="0.15" m="0.002">
+      <x>0.035 0 0.04</x>
+   </node>
+   <node idx="19" k="0.15" m="0.002">
+      <x>0.07 0 0.04</x>
+   </node>
+   <node idx="20" k="0.15" m="0.002">
+      <x>0.105 0 0.04</x>
+   </node>
+   <node idx="21" k="0.15" m="0.002">
+      <x>0.14 0 0.04</x>
+   </node>
+   <node idx="22" k="0.15" m="0.002">
+      <x>0.175 0 0.04</x>
+   </node>
+   <node idx="23" k="0.15" m="0.002">
+      <x>0.21 0 0.04</x>
+   </node>
+   <node idx="24" k="0.15" m="0.002">
+      <x>0.245 0 0.04</x>
+   </node>
+   <node idx="25" k="0.15" m="0.002">
+      <static/>
+      <x>0 0.02 0.04</x>
+   </node>
+   <node idx="26" k="0.15" m="0.002">
+      <x>0.035 0.02 0.04</x>
+   </node>
+   <node idx="27" k="0.15" m="0.002">
+      <x>0.07 0.02 0.04</x>
+   </node>
+   <node idx="28" k="0.15" m="0.002">
+      <x>0.105 0.02 0.04</x>
+   </node>
+   <node idx="29" k="0.15" m="0.002">
+      <x>0.14 0.02 0.04</x>
+   </node>
+   <node idx="30" k="0.15" m="0.002">
+      <x>0.175 0.02 0.04</x>
+   </node>
+   <node idx="31" k="0.15" m="0.002">
+      <x>0.21 0.02 0.04</x>
+   </node>
+   <node idx="32" k="0.15" m="0.002">
+      <x>0.245 0.02 0.04</x>
+   </node>
+   <spring idx="1" k="6000" m="0.01">
+      <node1>1</node1>
+      <node2>2</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="2" k="6000" m="0.01">
+      <node1>17</node1>
+      <node2>18</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="3" k="6000" m="0.01">
+      <node1>9</node1>
+      <node2>10</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="4" k="6000" m="0.01">
+      <node1>25</node1>
+      <node2>26</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="5" k="6000" m="0.01">
+      <node1>2</node1>
+      <node2>3</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="6" k="6000" m="0.01">
+      <node1>18</node1>
+      <node2>19</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="7" k="6000" m="0.01">
+      <node1>10</node1>
+      <node2>11</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="8" k="6000" m="0.01">
+      <node1>26</node1>
+      <node2>27</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="9" k="6000" m="0.01">
+      <node1>3</node1>
+      <node2>4</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="10" k="6000" m="0.01">
+      <node1>19</node1>
+      <node2>20</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="11" k="6000" m="0.01">
+      <node1>11</node1>
+      <node2>12</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="12" k="6000" m="0.01">
+      <node1>27</node1>
+      <node2>28</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="13" k="6000" m="0.01">
+      <node1>4</node1>
+      <node2>5</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="14" k="6000" m="0.01">
+      <node1>20</node1>
+      <node2>21</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="15" k="6000" m="0.01">
+      <node1>12</node1>
+      <node2>13</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="16" k="6000" m="0.01">
+      <node1>28</node1>
+      <node2>29</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="17" k="6000" m="0.01">
+      <node1>5</node1>
+      <node2>6</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="18" k="6000" m="0.01">
+      <node1>21</node1>
+      <node2>22</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="19" k="6000" m="0.01">
+      <node1>13</node1>
+      <node2>14</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="20" k="6000" m="0.01">
+      <node1>29</node1>
+      <node2>30</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="21" k="6000" m="0.01">
+      <node1>6</node1>
+      <node2>7</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="22" k="6000" m="0.01">
+      <node1>22</node1>
+      <node2>23</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="23" k="6000" m="0.01">
+      <node1>14</node1>
+      <node2>15</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="24" k="6000" m="0.01">
+      <node1>30</node1>
+      <node2>31</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="25" k="6000" m="0.01">
+      <node1>7</node1>
+      <node2>8</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="26" k="6000" m="0.01">
+      <node1>23</node1>
+      <node2>24</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="27" k="6000" m="0.01">
+      <node1>15</node1>
+      <node2>16</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="28" k="6000" m="0.01">
+      <node1>31</node1>
+      <node2>32</node2>
+      <rij0>0 1.5708 0</rij0>
+      <rji0>0 1.5708 0</rji0>
+      <l0>0.035</l0>
+   </spring>
+   <spring idx="29" k="6000" m="0.01">
+      <node1>1</node1>
+      <node2>9</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="30" k="6000" m="0.01">
+      <node1>17</node1>
+      <node2>25</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="31" k="6000" m="0.01">
+      <node1>2</node1>
+      <node2>10</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="32" k="6000" m="0.01">
+      <node1>18</node1>
+      <node2>26</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="33" k="6000" m="0.01">
+      <node1>3</node1>
+      <node2>11</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="34" k="6000" m="0.01">
+      <node1>19</node1>
+      <node2>27</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="35" k="6000" m="0.01">
+      <node1>4</node1>
+      <node2>12</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="36" k="6000" m="0.01">
+      <node1>20</node1>
+      <node2>28</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="37" k="6000" m="0.01">
+      <node1>5</node1>
+      <node2>13</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="38" k="6000" m="0.01">
+      <node1>21</node1>
+      <node2>29</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="39" k="6000" m="0.01">
+      <node1>6</node1>
+      <node2>14</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="40" k="6000" m="0.01">
+      <node1>22</node1>
+      <node2>30</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="41" k="6000" m="0.01">
+      <node1>7</node1>
+      <node2>15</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="42" k="6000" m="0.01">
+      <node1>23</node1>
+      <node2>31</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="43" k="6000" m="0.01">
+      <node1>8</node1>
+      <node2>16</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="44" k="6000" m="0.01">
+      <node1>24</node1>
+      <node2>32</node2>
+      <rij0>0 0 -1.5708</rij0>
+      <rji0>0 0 -1.5708</rji0>
+      <l0>0.02</l0>
+   </spring>
+   <spring idx="45" k="6000" m="0.01">
+      <node1>1</node1>
+      <node2>17</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="46" k="6000" m="0.01">
+      <node1>9</node1>
+      <node2>25</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="47" k="6000" m="0.01">
+      <node1>2</node1>
+      <node2>18</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="48" k="6000" m="0.01">
+      <node1>10</node1>
+      <node2>26</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="49" k="6000" m="0.01">
+      <node1>3</node1>
+      <node2>19</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="50" k="6000" m="0.01">
+      <node1>11</node1>
+      <node2>27</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="51" k="6000" m="0.01">
+      <node1>4</node1>
+      <node2>20</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="52" k="6000" m="0.01">
+      <node1>12</node1>
+      <node2>28</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="53" k="6000" m="0.01">
+      <node1>5</node1>
+      <node2>21</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="54" k="6000" m="0.01">
+      <node1>13</node1>
+      <node2>29</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="55" k="6000" m="0.01">
+      <node1>6</node1>
+      <node2>22</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="56" k="6000" m="0.01">
+      <node1>14</node1>
+      <node2>30</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="57" k="6000" m="0.01">
+      <node1>7</node1>
+      <node2>23</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="58" k="6000" m="0.01">
+      <node1>15</node1>
+      <node2>31</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="59" k="6000" m="0.01">
+      <node1>8</node1>
+      <node2>24</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="60" k="6000" m="0.01">
+      <node1>16</node1>
+      <node2>32</node2>
+      <rij0>0 0 0</rij0>
+      <rji0>0 0 0</rji0>
+      <l0>0.04</l0>
+   </spring>
+   <spring idx="61" k="6000" m="0.01">
+      <node1>17</node1>
+      <node2>2</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="62" k="6000" m="0.01">
+      <node1>25</node1>
+      <node2>10</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="63" k="6000" m="0.01">
+      <node1>18</node1>
+      <node2>3</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="64" k="6000" m="0.01">
+      <node1>26</node1>
+      <node2>11</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="65" k="6000" m="0.01">
+      <node1>19</node1>
+      <node2>4</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="66" k="6000" m="0.01">
+      <node1>27</node1>
+      <node2>12</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="67" k="6000" m="0.01">
+      <node1>20</node1>
+      <node2>5</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="68" k="6000" m="0.01">
+      <node1>28</node1>
+      <node2>13</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="69" k="6000" m="0.01">
+      <node1>21</node1>
+      <node2>6</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="70" k="6000" m="0.01">
+      <node1>29</node1>
+      <node2>14</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="71" k="6000" m="0.01">
+      <node1>22</node1>
+      <node2>7</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="72" k="6000" m="0.01">
+      <node1>30</node1>
+      <node2>15</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="73" k="6000" m="0.01">
+      <node1>23</node1>
+      <node2>8</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <spring idx="74" k="6000" m="0.01">
+      <node1>31</node1>
+      <node2>16</node2>
+      <rij0>0 2.4228 0</rij0>
+      <rji0>0 2.4228 0</rji0>
+      <l0>0.053151</l0>
+   </spring>
+   <group idx="1">
+      <springs>1 5 9 13 17 21 25</springs>
+   </group>
+   <group idx="2">
+      <springs>2 6 10 14 18 22 26</springs>
+   </group>
+   <group idx="3">
+      <springs>3 7 11 15 19 23 27</springs>
+   </group>
+   <group idx="4">
+      <springs>4 8 12 16 20 24 28</springs>
+   </group>
+</mesh>

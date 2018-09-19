@@ -1,0 +1,50 @@
+<?xml version='1.0'?>
+<mesh name="my_mesh">
+  <node idx="1">
+    <static/>
+    <pos>0 0 0</pos> <!-- x y z -->
+  </node>
+  <node idx="2">
+    <static/>
+    <pos>0 0.025 0</pos>
+  </node>
+  <node idx="3">
+    <pos>0.025 0 0</pos>
+  </node>
+  <node idx="4">
+    <pos>0.025 0.025 0</pos>
+  </node>
+  <node idx="5">
+    <pos>0.04665 0.0125 0</pos>
+  </node>
+  <spring idx="1">
+    <node1>1</node1>
+    <node2>3</node2>
+    <rot1>0 1.5708 0</rot1> <!-- Euler angles: z y x -->
+    <rot2>0 1.5708 0</rot2>
+  </spring>
+  <spring idx="2">
+    <node1>2</node1>
+    <node2>4</node2>
+    <rot1>0 1.5708 0</rot1>
+    <rot2>0 1.5708 0</rot2>
+  </spring>
+  <spring idx="3">
+    <node1>3</node1>
+    <node2>4</node2>
+    <rot1>0 1.5708 -1.5708</rot1>
+    <rot2>0 1.5708 -1.5708</rot2>
+  </spring>
+  <spring idx="4">
+    <node1>3</node1>
+    <node2>5</node2>
+    <rot1>0 1.5708 -0.5236</rot1>
+    <rot2>0 1.5708 -0.5236</rot2>
+  </spring>
+  <spring idx="5">
+    <node1>4</node1>
+    <node2>5</node2>
+    <rot1>0 1.5708 0.5236</rot1>
+    <rot2>0 1.5708 0.5236</rot2>
+  </spring>
+</mesh>

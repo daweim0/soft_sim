@@ -1,0 +1,6 @@
+*.swp
+*.out
+*.o
+*.idea*
+cmake-build-debug/*
+ode-0.13/*
