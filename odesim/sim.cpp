@@ -41,32 +41,70 @@ void SimStart()
 unsigned long count;
 void SimStep(int pause)
 {
+    std::vector<std::size_t> active_group;
     if (!pause)
     {
-        if (count == 0)
-            mptr->ApplyControl({1});
-        if (count == 250)
-            mptr->ApplyControl({1,2});
-        ++count;
+//        if (count == 0) {
+////            mptr->ApplyControl({1});
+//        }
+//        if (count == 250) {
+//            std::vector<std::size_t> active_group;
+//            for (int i = 0; i < 16; i++)
+//                active_group.push_back(i + 4);
+//            mptr->ApplyControl(active_group);
+//
+////            mptr->ApplyControl({1,2});
+//        }
+
+
+        unsigned long current_config = count / 3;
+        for (std::size_t i = 0; i < 12; i++)
+        {
+            if ((current_config & 1 << i) != 0) {
+                active_group.push_back(i + 1);
+            }
+        }
+        mptr->ApplyControl(active_group);
+
+        if (current_config >= 1 << 12) {
+            exit(0);
+        }
+
+//        mptr->ApplyControl({1, 2, 3, 4, 5, 6, 7, 8, 9});
+
+        count++;
 
         // Simulate 10ms
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 20; ++i)
         {
             dSpaceCollide(space, 0, &NearCallback);
             mptr->UpdateSpringForces();
-            dWorldStep(world, 0.001);
+            dWorldStep(world, 0.0005);
             dJointGroupEmpty(contactgroup);
 //            std::cout << "finished simulation step " << i << std::endl;
         }
     }
     mptr->Draw(); // draw the arm
 
+    auto node_positions = mptr->getPositions();
 
-    // draw the sphere
-    const dReal *pos = dBodyGetPosition(bSphere);
-    const dReal *R = dBodyGetRotation(bSphere);
-    dsSetColor(0, 1, 0);
-    dsDrawSphere(pos, R, r);
+
+    std::cout << "active_springs: ";
+    for (int i : active_group) {
+        std::cout << i << " ";
+    }
+
+    std::cout << " node positions:";
+    for (auto node_pos : node_positions) {
+        std::cout << "(" << node_pos(0) << ", " << node_pos(1) << ", " << node_pos(2) << ") ";
+    }
+    std::cout << std::endl;
+
+//    // draw the sphere
+//    const dReal *pos = dBodyGetPosition(bSphere);
+//    const dReal *R = dBodyGetRotation(bSphere);
+//    dsSetColor(0, 1, 0);
+//    dsDrawSphere(pos, R, r);
 
     // Draw box/anchor for mesh
     dMatrix3 Rbox;
@@ -109,16 +147,62 @@ int main(int argc, char **argv)
 
     // Create mesh
     Mesh mesh(world, space);
-    mesh.Init("mesh.xml");
+//    mesh.Init("mesh.xml");
+
+    double x_spacing = 0.035;
+    double diagonal_spacing = x_spacing * std::sqrt(2);
+    double super_diagonal_spacing = std::sqrt(x_spacing * x_spacing + diagonal_spacing * diagonal_spacing);
+
+
+    std::vector<spring_type> input_springs;
+    // Nodes 1 through 4 are fixed, so there is no point in adding springs between them
+//    input_springs.push_back(spring_type(1, 2, 6000, x_spacing));
+//    input_springs.push_back(spring_type(1, 3, 6000, x_spacing));
+//    input_springs.push_back(spring_type(2, 4, 6000, x_spacing));
+//    input_springs.push_back(spring_type(3, 4, 6000, x_spacing));
+
+    input_springs.push_back(spring_type(1, 5, 6000, x_spacing));
+    input_springs.push_back(spring_type(2, 5, 6000, diagonal_spacing));
+    input_springs.push_back(spring_type(3, 5, 6000, diagonal_spacing));
+//    input_springs.push_back(spring_type(4, 5, 6000, super_diagonal_spacing));
+
+    input_springs.push_back(spring_type(1, 6, 6000, diagonal_spacing));
+    input_springs.push_back(spring_type(2, 6, 6000, x_spacing));
+    input_springs.push_back(spring_type(3, 6, 6000, super_diagonal_spacing));
+    input_springs.push_back(spring_type(4, 6, 6000, diagonal_spacing));
+
+    input_springs.push_back(spring_type(1, 7, 6000, diagonal_spacing));
+//    input_springs.push_back(spring_type(2, 7, 6000, super_diagonal_spacing));
+    input_springs.push_back(spring_type(3, 7, 6000, x_spacing));
+    input_springs.push_back(spring_type(4, 7, 6000, diagonal_spacing));
+
+//    input_springs.push_back(spring_type(1, 8, 6000, super_diagonal_spacing));
+    input_springs.push_back(spring_type(2, 8, 6000, diagonal_spacing));
+    input_springs.push_back(spring_type(3, 8, 6000, diagonal_spacing));
+    input_springs.push_back(spring_type(4, 8, 6000, x_spacing));
+
+    input_springs.push_back(spring_type(5, 6, 6000, x_spacing));
+    input_springs.push_back(spring_type(5, 7, 6000, x_spacing));
+    input_springs.push_back(spring_type(6, 8, 6000, x_spacing));
+    input_springs.push_back(spring_type(7, 8, 6000, x_spacing));
+    input_springs.push_back(spring_type(6, 7, 6000, diagonal_spacing));
+    input_springs.push_back(spring_type(5, 8, 6000, diagonal_spacing));
+
+
+//    input_springs.push_back(spring_type(1, 4, 0.15, 0.04949));
+//    input_springs.push_back(spring_type(1, 5, 0.15, 0.035));
+//    input_springs.push_back(spring_type(1, 7, 0.15, 0.0699));
+    mesh.Init(input_springs);
     mptr = &mesh;
 
-    dMass mass;
-    bSphere = dBodyCreate(world);
-    dGeomID geom = dCreateSphere(space, r);
-    dMassSetSphereTotal(&mass, 0.01, r);
-    dBodySetMass(bSphere, &mass);
-    dGeomSetBody(geom, bSphere);
-    dBodySetPosition(bSphere, 0.045, 2-r - 0.005, r);
+
+//    dMass mass;
+//    bSphere = dBodyCreate(world);
+//    dGeomID geom = dCreateSphere(space, r);
+//    dMassSetSphereTotal(&mass, 0.01, r);
+//    dBodySetMass(bSphere, &mass);
+//    dGeomSetBody(geom, bSphere);
+//    dBodySetPosition(bSphere, 0.045, 2-r - 0.005, r);
 
     // Run simulation
     count = 0;

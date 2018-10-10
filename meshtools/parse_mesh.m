@@ -1,3 +1,5 @@
+pkg load io
+
 function [nodes, springs, groups] = parse_mesh(filename)
 % Read a mesh description from an xml file.
 % Input: filename - file path (e.g. '/path/mesh.xml')

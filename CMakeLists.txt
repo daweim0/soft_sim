@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(mytest)
 
-set(EXTRA_FLAGS -g3 -O2)
+set(EXTRA_FLAGS -g3 -O0)
 
 add_executable(explore
     odesim/explore.cpp

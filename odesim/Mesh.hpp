@@ -4,9 +4,14 @@
 
 #include <vector>
 #include <string>
+#include <set>
 
 #include <ode/ode.h>
 #include <Eigen/Dense>
+#include <memory>
+
+
+using spring_type = std::tuple<int, int, double, double>;
 
 struct NodeState
 {
@@ -23,6 +28,7 @@ struct SpringInfo
     Eigen::Matrix3f Rij0;
     Eigen::Matrix3f Rji0;
     dReal l0;
+    dReal l0_orrigional;
     dReal k;
     dReal k1;
     dReal k2;
@@ -31,8 +37,8 @@ struct SpringInfo
 class Mesh
 {
     std::vector<dBodyID> nodes;
-    std::vector<SpringInfo> springs;
-    std::vector<std::vector<SpringInfo *> > groups;
+    std::vector<std::shared_ptr<SpringInfo> > springs;
+    std::vector<std::vector<std::shared_ptr<SpringInfo> > > groups;
 
     dWorldID world;
     dSpaceID space;
@@ -40,11 +46,13 @@ class Mesh
 
     public: Mesh(dWorldID world, dSpaceID space);
     public: void Init(std::string filename);
+    public: void Init(std::vector<spring_type> input_springs);
     public: void UpdateSpringForces();
     public: void Draw();
     public: void ApplyControl(std::vector<size_t> active);
     public: void SaveState(NodeState &state);
     public: void RestoreState(const NodeState &state);
+    public: std::vector<Eigen::Vector3f> getPositions();
 
     // Parse XML and construct mesh
     private: bool InitHelper(std::string filename);

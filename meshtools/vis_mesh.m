@@ -11,7 +11,7 @@ end
 n = numel(nodes);
 
 % Node positions
-scatter3(x(1+3*(0:n-1)), x(2+3*(0:n-1)), x(3+3*(0:n-1)), 'bo')
+scatter3(x(1+3*(0:n-1)), x(2+3*(0:n-1)), x(3+3*(0:n-1)), 'b')
 
 for k = 1:numel(springs)
     i = springs(k).nodes(1);
