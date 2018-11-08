@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mesh name="my_mesh">
+    <node idx="1" k="0.15" m="0.002">
+        <static/>
+        <x>0 0 0</x>
+    </node>
+</mesh>

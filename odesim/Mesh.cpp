@@ -37,113 +37,60 @@ void Mesh::Init(std::string filename)
 }
 
 
-void Mesh::Init(std::vector<std::tuple<int, int, double, double>> input_springs)
+void Mesh::Init_from_vector(std::vector<node_type> input_nodes, std::vector<spring_type> input_springs)
 {
 
     this->isInitialized = true;
 
+    std::vector<dReal> ms_node(input_nodes.size());
+    std::vector<dReal> ks_node(input_nodes.size());
 
-//    TiXmlDocument doc(filename);
-//    if (!doc.LoadFile()) return false;
-//
-//    TiXmlElement *root, *elem, *param;
-//
-//    root = doc.FirstChildElement("mesh");
-//    if (root == nullptr) return false;
+    for (int idx = 0; idx < input_nodes.size(); idx++) {
+        auto node = input_nodes.at(idx);
 
-    // Count number of nodes
-    size_t n = 0;
-//    TiXmlNode *child;
-//    for (child = root->FirstChild("node"); child; child = child->NextSibling("node"))
-//    {
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++){
-            for (int k = 0; k < 2; k++) {
-                ++n;
-                this->nodes.push_back(NULL);
-            }
+        float k_node, m_node;
+        Vector3f pos;
 
-        }
-    }
-//    }
+        k_node = 0.15;
+        m_node = 0.002;
 
-    std::vector<dReal> ms_node(n);
-    std::vector<dReal> ks_node(n);
+        pos[0] = std::get<0>(node);
+        pos[1] = std::get<1>(node);
+        pos[2] = std::get<2>(node);
 
-//    elem = root->FirstChildElement("node");
+        pos[1] = pos[1] + 2; // shift all nodes +y
 
-//    while (elem)
-    for (int x = 0; x < 2; x++) {
-        for (int y = 0; y < 2; y++) {
-            for (int z = 0; z < 2; z++) {
-                size_t idx;
-                float k_node, m_node;
-                Vector3f pos;
+        // Create ODE body
+        dBodyID body = dBodyCreate(this->world);
+        dGeomID geom = dCreateSphere(this->space, r_node);
+        dGeomSetBody(geom, body);
+        dBodySetPosition(body, pos[0], pos[1], pos[2] + 0.04);
+        this->nodes.push_back(body);
 
-                // Extract node info
-//                if (sscanf(elem->Attribute("idx"), "%lu", &idx) < 1) return false;
-                idx = x * 4 + y * 2 + z + 1;
-//                 if (sscanf(elem->Attribute("k"), "%f", &k_node) < 1) return false;
-                k_node = 0.15;
-//                if (sscanf(elem->Attribute("m"), "%f", &m_node) < 1) return false;
-                m_node = 0.002;
-//                if ((param = elem->FirstChildElement("x")) == nullptr) return false;
-//                if (sscanf(param->GetText(), "%f %f %f", &pos[0], &pos[1], &pos[2]) < 3) return false;
-                pos[0] = 0.035 * x;
-                pos[1] = 0.035 * y;
-                pos[2] = 0.035 * z;
-
-                pos[1] = pos[1] + 2; // shift all nodes +y
-
-                // Create ODE body
-                dBodyID body = dBodyCreate(this->world);
-                dGeomID geom = dCreateSphere(this->space, r_node);
-                dGeomSetBody(geom, body);
-                dBodySetPosition(body, pos[0], pos[1], pos[2] + 0.04);
-                this->nodes.at(idx - 1) = body;
-
-                // Anchor static nodes
+        // Anchor static nodes
 //                if (elem->FirstChildElement("static") != nullptr) {
-                if (x == 0) {
-                    dJointID anchor = dJointCreateFixed(this->world, 0);
-                    dJointAttach(anchor, NULL, body);
-                    dJointSetFixed(anchor);
-                }
-
-                // Store parameters
-                ms_node.at(idx - 1) = m_node;
-                ks_node.at(idx - 1) = k_node;
-
-//                elem = elem->NextSiblingElement("node");
-            }
+        if (std::get<3>(node)) {
+            dJointID anchor = dJointCreateFixed(this->world, 0);
+            dJointAttach(anchor, NULL, body);
+            dJointSetFixed(anchor);
         }
+
+        // Store parameters
+        ms_node.at(idx) = m_node;
+        ks_node.at(idx) = k_node;
+
     }
 
-//    elem = root->FirstChildElement("spring");
-    auto set_iter = input_springs.begin();
-    for (; set_iter != input_springs.end(); set_iter++)
+    for (auto set_iter = input_springs.begin(); set_iter != input_springs.end(); set_iter++)
     {
         size_t node1, node2;
         float k_spring, m_spring, l0;
         Vector3f rij0, rji0;
 
-//        // Extract spring info
-//        if (sscanf(elem->Attribute("k"), "%f", &k_spring) < 1) return false;
-//        if (sscanf(elem->Attribute("m"), "%f", &m_spring) < 1) return false;
-//        if ((param = elem->FirstChildElement("node1")) == nullptr) return false;
-//        if (sscanf(param->GetText(), "%lu", &node1) < 1) return false;
-//        if ((param = elem->FirstChildElement("node2")) == nullptr) return false;
-//        if (sscanf(param->GetText(), "%lu", &node2) < 1) return false;
-//        if ((param = elem->FirstChildElement("rij0")) == nullptr) return false;
-//        if (sscanf(param->GetText(), "%f %f %f", &rij0[0], &rij0[1], &rij0[2]) < 3) return false;
-//        if ((param = elem->FirstChildElement("rji0")) == nullptr) return false;
-//        if (sscanf(param->GetText(), "%f %f %f", &rji0[0], &rji0[1], &rji0[2]) < 3) return false;
-//        if ((param = elem->FirstChildElement("l0")) == nullptr) return false;
-//        if (sscanf(param->GetText(), "%f", &l0) < 1) return false;
 
         auto next_spring = *set_iter;
-        node1 = std::get<0>(next_spring);
-        node2 = std::get<1>(next_spring);
+        node1 = std::get<0>(next_spring) - 1;
+        node2 = std::get<1>(next_spring) - 1;
 //        int z = std::get<2>(next_spring);
         k_spring = std::get<2>(next_spring);
         m_spring = 0.01;
@@ -151,9 +98,9 @@ void Mesh::Init(std::vector<std::tuple<int, int, double, double>> input_springs)
         rji0[1] = 1.5708;
         rji0[2] = 0;
 
-        // TODO: actually calculate this
-//        l0 = 0.035;
-        l0 = std::get<3>(next_spring);
+        Vector3f pos1(dBodyGetPosition(nodes.at(node1)));
+        Vector3f pos2(dBodyGetPosition(nodes.at(node2)));
+        l0 = (pos1 - pos2).norm();
 
 
         // Place spring links in their rest orientations
@@ -167,34 +114,36 @@ void Mesh::Init(std::vector<std::tuple<int, int, double, double>> input_springs)
                * AngleAxisf(rji0[2], Vector3f::UnitX());
 
         // Divide mass between endpoint nodes
-        ms_node.at(node1-1) += m_spring/2.0;
-        ms_node.at(node2-1) += m_spring/2.0;
+        ms_node.at(node1) += m_spring/2.0;
+        ms_node.at(node2) += m_spring/2.0;
 
         // Populate spring structure
         std::shared_ptr<SpringInfo> spring = std::make_shared<SpringInfo>();
-        spring->body1 = this->nodes.at(node1-1);
-        spring->body2 = this->nodes.at(node2-1);
+        spring->body1 = this->nodes.at(node1);
+        spring->body2 = this->nodes.at(node2);
         spring->Rij0 = Rij0;
         spring->Rji0 = Rji0;
         spring->l0 = l0;
         spring->l0_orrigional = l0;
         spring->k = k_spring;
-        spring->k1 = ks_node.at(node1-1);
-        spring->k2 = ks_node.at(node2-1);
+        spring->k1 = ks_node.at(node1);
+        spring->k2 = ks_node.at(node2);
         this->springs.push_back(spring);
 
-        // make spring its own group
-        std::vector<std::shared_ptr<SpringInfo> > slist;
-        slist.push_back(this->springs.back());
-        this->groups.push_back(slist);
+        // make spring its own group, but only if it's controllable
+        if (std::get<4>(next_spring)) {
+            std::vector<std::shared_ptr<SpringInfo> > slist;
+            slist.push_back(this->springs.back());
+            this->groups.push_back(slist);
+        }
 
     }
     // Set node masses (lumped)
-    for (size_t i = 0; i < n; ++i)
+    for (size_t i = 0; i < nodes.size(); ++i)
     {
         dMass mass;
         dMassSetSphereTotal(&mass, ms_node.at(i), r_node);
-        dBodySetMass(this->nodes.at(i), &mass);
+        dBodySetMass(nodes.at(i), &mass);
     }
 
 //    elem = root->FirstChildElement("group");
@@ -255,36 +204,36 @@ void Mesh::UpdateSpringForces()
             dBodyAddForce(body1, fs*dvec[0], fs*dvec[1], fs*dvec[2]);
             dBodyAddForce(body2,-fs*dvec[0],-fs*dvec[1],-fs*dvec[2]);
 
-            // Spring deflection
-            // TODO: what is this?
-            Vector3f vec;
-            float vmag;
-            
-            vec = R1*spring->Rij0.col(2);
-            vec = vec.cross(dvec);
-            vmag = vec.norm();
-            if (fabs(vmag) < 1e-8)
-                vec = Vector3f::Zero();
-            else
-                vec = (spring->k1 * std::asin(vmag) / vmag) * vec;
-            dBodyAddTorque(body1, vec[0], vec[1], vec[2]);
-            vec = dvec.cross(vec)/d;
-            dBodyAddForce(body2, vec[0], vec[1], vec[2]);
-            dBodyAddForce(body1,-vec[0],-vec[1],-vec[2]);
-
-            vec = -R2*spring->Rji0.col(2);
-            vec = vec.cross(-dvec);
-            vmag = vec.norm();
-            if (fabs(vmag) < 1e-8)
-                vec = Vector3f::Zero();
-            else
-                vec = (spring->k2 * std::asin(vmag) / vmag) * vec;
-            dBodyAddTorque(body2, vec[0], vec[1], vec[2]);
-            vec = -dvec.cross(vec)/d;
-            dBodyAddForce(body1, vec[0], vec[1], vec[2]);
-            dBodyAddForce(body2,-vec[0],-vec[1],-vec[2]);
-
-            // Spring twist (?)
+//            // Spring deflection
+//            // TODO: what is this?
+//            Vector3f vec;
+//            float vmag;
+//
+//            vec = R1*spring->Rij0.col(2);
+//            vec = vec.cross(dvec);
+//            vmag = vec.norm();
+//            if (fabs(vmag) < 1e-8)
+//                vec = Vector3f::Zero();
+//            else
+//                vec = (spring->k1 * std::asin(vmag) / vmag) * vec;
+//            dBodyAddTorque(body1, vec[0], vec[1], vec[2]);
+//            vec = dvec.cross(vec)/d;
+//            dBodyAddForce(body2, vec[0], vec[1], vec[2]);
+//            dBodyAddForce(body1,-vec[0],-vec[1],-vec[2]);
+//
+//            vec = -R2*spring->Rji0.col(2);
+//            vec = vec.cross(-dvec);
+//            vmag = vec.norm();
+//            if (fabs(vmag) < 1e-8)
+//                vec = Vector3f::Zero();
+//            else
+//                vec = (spring->k2 * std::asin(vmag) / vmag) * vec;
+//            dBodyAddTorque(body2, vec[0], vec[1], vec[2]);
+//            vec = -dvec.cross(vec)/d;
+//            dBodyAddForce(body1, vec[0], vec[1], vec[2]);
+//            dBodyAddForce(body2,-vec[0],-vec[1],-vec[2]);
+//
+//            // Spring twist (?)
         }
     }
 }
@@ -293,13 +242,39 @@ void Mesh::UpdateSpringForces()
 std::vector<Vector3f> Mesh::getPositions() {
     std::vector<Vector3f> node_positions;
 
-    for(int i = 0; i < nodes.size(); i++)
+    for(auto node : nodes)
     {
-        Vector3f position(dBodyGetPosition(nodes.at(i)));
+        Vector3f position(dBodyGetPosition(node));
         node_positions.push_back(position);
     }
 
     return node_positions;
+}
+
+
+std::vector<Vector3f> Mesh::getLinearVel() {
+    std::vector<Vector3f> node_vels;
+
+    for(auto node : nodes)
+    {
+        Vector3f position(dBodyGetLinearVel(node));
+        node_vels.push_back(position);
+    }
+
+    return node_vels;
+}
+
+
+std::vector<Quaternionf> Mesh::getQuaternions() {
+    std::vector<Quaternionf> node_rotations;
+
+    for(auto node : nodes)
+    {
+        Quaternionf position(dBodyGetQuaternion(node));
+        node_rotations.push_back(position);
+    }
+
+    return node_rotations;
 }
 
 
@@ -398,13 +373,16 @@ void Mesh::ApplyControl(std::vector<size_t> active)
     // Reactivate springs in active groups
     for (const auto &idx : active)
     {
-        if (idx < this->groups.size())
+        if (idx <= this->groups.size())
         {
-            for (auto sptr : this->groups.at(idx-1))
+            for (const auto& sptr : this->groups.at(idx-1))
             {
-//                sptr->k = 8000;
+                sptr->k = 8000;
                 sptr->l0 *= 0.9;
             }
+        }
+        else {
+            throw std::invalid_argument("no spring group " + std::to_string(idx));
         }
     }
 }
@@ -580,4 +558,9 @@ bool Mesh::InitHelper(std::string filename)
     }
 
     return true;
+}
+
+
+int Mesh::n_groups() {
+    return groups.size();
 }

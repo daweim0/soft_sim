@@ -11,7 +11,9 @@
 #include <memory>
 
 
-using spring_type = std::tuple<int, int, double, double>;
+using node_type = std::tuple<double, double, double, bool>;  // x, y, z, fixed?
+using spring_type = std::tuple<int, int, double, double, bool>;  // body 1, body 2, l0, k, controllable
+
 
 struct NodeState
 {
@@ -46,13 +48,18 @@ class Mesh
 
     public: Mesh(dWorldID world, dSpaceID space);
     public: void Init(std::string filename);
-    public: void Init(std::vector<spring_type> input_springs);
+//    public: void Init_cube(std::vector<spring_type> input_springs);
+//    public: void Init_triangle(std::vector<spring_type> input_springs);
+    public: void Init_from_vector(std::vector<node_type> input_nodes, std::vector<spring_type> input_springs);
     public: void UpdateSpringForces();
     public: void Draw();
     public: void ApplyControl(std::vector<size_t> active);
     public: void SaveState(NodeState &state);
     public: void RestoreState(const NodeState &state);
     public: std::vector<Eigen::Vector3f> getPositions();
+    public: std::vector<Eigen::Vector3f> getLinearVel();
+    public: std::vector<Eigen::Quaternionf> getQuaternions();
+    public: int n_groups();
 
     // Parse XML and construct mesh
     private: bool InitHelper(std::string filename);
