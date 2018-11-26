@@ -73,7 +73,12 @@ def main():
     fig = plt.figure()
     ax = fig.gca(projection='3d')
 
-    characteristic_set_transposed = np.array(characteristic_set).transpose()
+    vectors_mat = np.array(characteristic_set)
+
+    # do_pca(vectors_mat)
+    max_volume_submat(vectors_mat)
+
+    characteristic_set_transposed = np.array(vectors_mat).transpose()
     characteristic_set_transposed = swap_yz(characteristic_set_transposed)
 
     ax.quiver(*characteristic_set_transposed, colors="red", length=0.005)
@@ -89,5 +94,58 @@ def main():
     plt.show()
 
 
+
+def do_pca(data_mat : np.ndarray):
+    print("input mat:")
+    print(data_mat)
+    print()
+
+    U, s, Vt = np.linalg.svd(data_mat, full_matrices=False)
+    V = Vt.T
+    print("U:")
+    print(U)
+    print()
+    print("s:")
+    print(s)
+
+
+def max_volume_submat(data_mat: np.ndarray, k=3):
+    print("input mat:")
+    print(data_mat)
+    print()
+
+    vector_iterable = []
+    for i in range(data_mat.shape[0]):
+        vector_iterable.append(data_mat[i])
+
+    S = []
+
+    def vector_norm(vect):
+        return vect, np.linalg.norm(vect)
+
+    def subtract_projection(a, b):
+        """ subtracts the projection of a from b and returns the new b """
+        return b - np.dot(a, b) / np.linalg.norm(b) * (b / np.linalg.norm(b))
+
+    for i in range(k):
+        min_vect, mag = max(map(vector_norm, vector_iterable), key=lambda x: x[1])
+        vector_iterable_temp = filter(lambda x: (min_vect != x).any(), vector_iterable)
+        vector_iterable = list(map(lambda x: subtract_projection(min_vect, x), vector_iterable_temp))
+        S.append(min_vect)
+        print("iter " + str(i) + " mag:", mag)
+
+    print(S)
+    return S
+
+
 if __name__ == "__main__":
+    np.set_printoptions(suppress=True)
+
+    # test code
+    # max_volume_submat(np.array([[1, 0, 0, 0, 0],
+    #                             [0, 1, 0, 0, 0],
+    #                             [0, 0, 1, 0, 0],
+    #                             [0, 0, 0, 0.1, 0],
+    #                             [0, 0, 0, 0, -0.1]]))
+
     main()

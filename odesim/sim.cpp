@@ -78,7 +78,7 @@ void SimStep(int pause)
         mptr->ApplyControl(active_group);
 
         if (current_config >= 1 << mptr->n_groups()) {
-            exit(0);
+//            exit(0);
         }
 
         for(int rep = 0; rep  < 200; rep++) {
